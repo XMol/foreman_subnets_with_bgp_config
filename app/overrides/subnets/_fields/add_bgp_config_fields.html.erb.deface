@@ -1,0 +1,4 @@
+<!-- insert_after "erb[loud]:contains(':boot_mode')" -->
+<%= f.fields_for :subnet_bgp_config do |b|
+  render 'foreman_subnets_with_bgp_config/subnets/_bgp_config', :f => b
+end %>

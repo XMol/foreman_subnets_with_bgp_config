@@ -2,7 +2,7 @@ require File.expand_path('lib/foreman_subnets_with_bgp_config/version', __dir__)
 
 Gem::Specification.new do |s|
   s.name        = 'foreman_subnets_with_bgp_config'
-  s.version     = ForemanSubnetsWithBGPConfig::VERSION
+  s.version     = ForemanSubnetsWithBgpConfig::VERSION
   s.metadata    = { 'is_foreman_plugin' => 'true' }
   s.license     = 'GPL-3.0'
   s.authors     = ['Xavier Mol']

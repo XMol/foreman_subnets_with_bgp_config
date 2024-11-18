@@ -1,4 +1,4 @@
-# ForemanSubnetsWithBGPConfig
+# ForemanSubnetsWithBgpConfig
 
 Add fields for BGP relevant configuration settings to the Foreman Subnet model.
 
@@ -27,7 +27,10 @@ for how to install Foreman plugins in general. The following should be sufficien
     gem install --ignore-dependencies foreman_subnets_with_bgp_config-*.gem
     /bin/rm foreman_subnets_with_bgp_config-*.gem # Cleanup to avoid future conflicts
     ```
-1. If the plugin is installed for the first time, 
+1. Apply any pending database migrations
+   ```bash
+   foreman-rake db:migrate
+   ```
 1. Foreman needs a restart with every newly installed Gem
     ```bash
     foreman-maintain service restart

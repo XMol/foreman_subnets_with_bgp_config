@@ -1,12 +1,12 @@
-module ForemanSubnetsWithBGPConfig
+module ForemanSubnetsWithBgpConfig
   class Engine < ::Rails::Engine
-    isolate_namespace ForemanSubnetsWithBGPConfig
+    isolate_namespace ForemanSubnetsWithBgpConfig
     engine_name 'foreman_subnets_with_bgp_config'
 
     config.autoload_paths += Dir["#{config.root}/app"]
 
     initializer 'foreman_subnets_with_bgp_config.load_app_instance_data' do |app|
-      ForemanSubnetsWithBGPConfig::Engine.paths['db/migrate'].existent.each do |path|
+      ForemanSubnetsWithBgpConfig::Engine.paths['db/migrate'].existent.each do |path|
         app.config.paths['db/migrate'] << path
       end
     end
@@ -20,12 +20,14 @@ module ForemanSubnetsWithBGPConfig
     end
 
     config.to_prepare do
-      Subnet.send(:include, ForemanSubnetsWithBGPConfig::SubnetExtensions)
+      ::Subnet.include ForemanSubnetsWithBgpConfig::SubnetExtensions if defined?(::Subnet)
+      ::Subnet::Ipv4.include ForemanSubnetsWithBgpConfig::SubnetExtensions if defined?(::Subnet::Ipv4)
+      ::Subnet::Ipv6.include ForemanSubnetsWithBgpConfig::SubnetExtensions if defined?(::Subnet::Ipv6)
     end
 
     rake_tasks do
       Rake::Task['db:seed'].enhance do
-        ForemanSubnetsWithBGPConfig::Engine.load_seed
+        ForemanSubnetsWithBgpConfig::Engine.load_seed
       end
     end
   end

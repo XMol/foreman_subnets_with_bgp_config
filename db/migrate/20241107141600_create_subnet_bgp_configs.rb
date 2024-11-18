@@ -1,6 +1,6 @@
 # Never change this file's name or content, once it has been applied to any database!
 # If the change is inappropriate, add more migration files to recktify that!
-class CreateHostAliases < ActiveRecord::Migration[4.2]
+class CreateSubnetBgpConfigs < ActiveRecord::Migration[4.2]
   def change
     create_table :subnet_bgp_configs do |t|
       # A primary key id column is added by default
